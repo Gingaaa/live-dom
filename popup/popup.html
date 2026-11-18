@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiveDOM Inspector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-badge">⚡</div>
+        <div>
+          <h1>LiveDOM</h1>
+          <p class="tagline">Visual In-Page Editor</p>
+        </div>
+      </div>
+      <div class="status-indicator" id="statusPill">Inactive</div>
+    </header>
+
+    <!-- Main Toggle Card -->
+    <div class="card toggle-card">
+      <div class="toggle-info">
+        <span class="label">Edit Mode</span>
+        <span class="sub-label">Hover & tweak DOM elements</span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="inspectToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Mode Configuration -->
+    <div class="card settings-card">
+      <div class="section-title">Activation Mode</div>
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="triggerMode" value="alt" checked>
+          <div class="radio-content">
+            <span class="radio-title">Hold <kbd>Alt</kbd> / <kbd>⌥</kbd> to inspect</span>
+            <span class="radio-desc">Browse normally; inspect only when holding Alt</span>
+          </div>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="triggerMode" value="always">
+          <div class="radio-content">
+            <span class="radio-title">Always Active</span>
+            <span class="radio-desc">Every hover shows the quick micro-chip</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Session Stats & Actions -->
+    <div class="card stats-card">
+      <div class="stats-row">
+        <span>Modified Elements:</span>
+        <strong id="modifiedCount">0</strong>
+      </div>
+      <div class="stats-row" id="hiddenStatsRow" style="display: none; color: #f87171;">
+        <span>Hidden Elements:</span>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <strong id="hiddenCount" style="color: #f87171;">0</strong>
+          <button id="unhidePopupBtn" class="btn btn-secondary" style="padding: 2px 6px; font-size: 10px;">Unhide All</button>
+        </div>
+      </div>
+      <div class="button-group">
+        <button id="copyCssBtn" class="btn btn-secondary" title="Copy all modified CSS rules">
+          📋 Copy CSS
+        </button>
+        <button id="exportHtmlBtn" class="btn btn-secondary" title="Download the full updated HTML">
+          💾 Save HTML
+        </button>
+        <button id="resetBtn" class="btn btn-danger" title="Revert all changes">
+          ↺ Reset
+        </button>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts -->
+    <footer class="footer">
+      <div class="shortcut-item"><kbd>Alt</kbd> + Hover to target</div>
+      <div class="shortcut-item"><kbd>Click</kbd> to open micro-card</div>
+      <div class="shortcut-item"><kbd>Esc</kbd> to dismiss</div>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

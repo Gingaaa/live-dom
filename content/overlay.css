@@ -1,0 +1,560 @@
+/* Shadow DOM Overlay Styles for LiveDOM */
+
+:host {
+  all: initial;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #f1f5f9;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hover Box Highlight */
+.livedom-hover-box {
+  position: fixed;
+  pointer-events: none;
+  border: 1.5px dashed #38bdf8;
+  background-color: rgba(56, 189, 248, 0.08);
+  border-radius: 4px;
+  transition: all 0.08s ease-out;
+  display: none;
+  box-sizing: border-box;
+}
+
+.livedom-hover-box.active {
+  display: block;
+}
+
+/* Micro-Chip hovering on top of target */
+.livedom-hover-chip {
+  position: fixed;
+  pointer-events: auto;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #38bdf8;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+.livedom-hover-chip:hover {
+  transform: translateY(-1px);
+  background: rgba(30, 41, 59, 0.98);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+.livedom-hover-chip .chip-tag {
+  color: #a5b4fc;
+}
+
+.livedom-hover-chip .chip-size {
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+.livedom-hover-chip .chip-action {
+  background: #38bdf8;
+  color: #0f172a;
+  border-radius: 4px;
+  padding: 1px 4px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+/* Selected Element Border Box */
+.livedom-selected-box {
+  position: fixed;
+  pointer-events: none;
+  border: 2px solid #6366f1;
+  background-color: rgba(99, 102, 241, 0.05);
+  border-radius: 4px;
+  display: none;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2);
+}
+
+.livedom-selected-box.active {
+  display: block;
+}
+
+/* Main In-Page Micro-Card (Visual Editor) */
+.livedom-micro-card {
+  position: fixed;
+  pointer-events: auto;
+  width: 330px;
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  padding: 12px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  user-select: none;
+  box-sizing: border-box;
+  animation: cardFadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  scrollbar-width: thin;
+  scrollbar-color: #475569 transparent;
+}
+
+/* Custom Sleek Scrollbar */
+.livedom-micro-card::-webkit-scrollbar {
+  width: 5px;
+}
+
+.livedom-micro-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.livedom-micro-card::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+.livedom-micro-card::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+.livedom-micro-card.active {
+  display: flex;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Sticky Card Header */
+.card-header {
+  position: sticky;
+  top: -12px;
+  z-index: 10;
+  background: rgba(15, 23, 42, 0.98);
+  margin: -12px -12px 0 -12px;
+  padding: 12px 12px 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1e293b;
+}
+
+.element-tag-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  color: #38bdf8;
+  font-weight: 600;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.parent-nav-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #94a3b8;
+  border-radius: 4px;
+  font-size: 10px;
+  padding: 2px 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.parent-nav-btn:hover {
+  background: #334155;
+  color: #ffffff;
+}
+
+.card-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.card-close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Sections */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Classes Manager */
+.class-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-height: 72px;
+  overflow-y: auto;
+  padding: 2px 0;
+}
+
+.class-tag {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #c7d2fe;
+  font-size: 10px;
+  font-family: monospace;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.class-tag-remove {
+  cursor: pointer;
+  color: #94a3b8;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.class-tag-remove:hover {
+  color: #ef4444;
+}
+
+.add-class-form {
+  display: flex;
+  gap: 6px;
+}
+
+.add-class-input {
+  flex: 1;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-family: monospace;
+  color: #f8fafc;
+  outline: none;
+}
+
+.add-class-input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px #38bdf8;
+}
+
+.add-class-btn {
+  background: #38bdf8;
+  border: none;
+  border-radius: 6px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.add-class-btn:hover {
+  background: #7dd3fc;
+}
+
+/* Quick Style Grid */
+.style-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.style-control {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.style-control-label {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+/* Font Size Control */
+.stepper-control {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.step-btn {
+  background: #334155;
+  border: none;
+  color: #f8fafc;
+  border-radius: 3px;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.step-btn:hover {
+  background: #475569;
+}
+
+.step-val {
+  font-size: 11px;
+  font-family: monospace;
+  min-width: 32px;
+  text-align: center;
+  color: #38bdf8;
+}
+
+/* Color Pickers */
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.color-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+}
+
+.color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-input::-webkit-color-swatch {
+  border: 1px solid #475569;
+  border-radius: 4px;
+}
+
+/* Action Bar */
+.action-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  border-top: 1px solid #1e293b;
+  padding-top: 8px;
+}
+
+.action-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 6px 4px;
+  color: #cbd5e1;
+  font-size: 10px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.action-btn:hover {
+  background: #334155;
+  color: #ffffff;
+}
+
+.action-btn.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+.action-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* HTML Editor Drawer */
+.html-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid #1e293b;
+  padding-top: 8px;
+}
+
+.html-drawer.open {
+  display: flex;
+}
+
+.html-textarea {
+  width: 100%;
+  height: 90px;
+  background: #090d16;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #38bdf8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  padding: 6px;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.html-textarea:focus {
+  border-color: #38bdf8;
+}
+
+.html-drawer-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.apply-html-btn {
+  background: #10b981;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.apply-html-btn:hover {
+  background: #34d399;
+}
+
+/* Responsive Handling for Small Devices / Tablets */
+@media (max-width: 600px) {
+  .livedom-micro-card {
+    width: 290px;
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+/* Floating Bottom Pill for Hidden Elements */
+.livedom-hidden-pill {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #f87171;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  z-index: 2147483647;
+  animation: pillSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.livedom-hidden-pill.active {
+  display: flex;
+}
+
+@keyframes pillSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.livedom-hidden-pill .pill-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.livedom-hidden-pill .unhide-btn {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  color: #34d399;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.livedom-hidden-pill .unhide-btn:hover {
+  background: #10b981;
+  color: #0f172a;
+}
+

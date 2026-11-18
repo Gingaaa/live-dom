@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "LiveDOM - In-Page Visual Web Editor",
+  "version": "1.0.0",
+  "description": "Edit classes, CSS, fonts, and HTML directly on any webpage without opening DevTools.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "LiveDOM Inspector"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["content/overlay.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
